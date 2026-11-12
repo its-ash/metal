@@ -1,0 +1,212 @@
+<!doctype html>
+<!-- Metal landing page (custom). Download links point at the latest GitHub release asset metal.apk. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metal: metal detector for studs, nails, pipes and rebar</title>
+<meta name="description" content="Metal detector for studs, nails, pipes and rebar, using your phone's magnetometer.">
+<meta name="theme-color" content="#0F172A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Metal: metal detector for studs, nails, pipes and rebar">
+<meta property="og:description" content="Metal detector for studs, nails, pipes and rebar, using your phone's magnetometer.">
+<meta property="og:image" content="https://metal.itsash.in/assets/icon/logo-1024.png">
+<meta property="og:url" content="https://metal.itsash.in/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="assets/icon/logo-1024.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon/logo-1024.png">
+<style>
+  :root {
+    color-scheme: light dark;
+    --icon-bg: #0F172A; --icon-fg: #FBBF24;
+    --bg: #F8FAFC; --bg2: #EEF2F7; --card: #FFFFFF; --line: #D8E0EA;
+    --text: #0F172A; --muted: #475569;
+    --accent: #B45309; --btn: #0F172A; --on-btn: #FBBF24; --soft: rgba(251,191,36,.20);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0B1120; --bg2: #0F172A; --card: #141E36; --line: #25324F;
+      --text: #E8EEF8; --muted: #A0AEC4;
+      --accent: #FBBF24; --btn: #FBBF24; --on-btn: #0F172A; --soft: rgba(251,191,36,.12);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--accent); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -999px; } .skip:focus { left: 8px; top: 8px; background: var(--card); padding: 8px 12px; z-index: 20; }
+
+  nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 18px; text-decoration: none; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; image-rendering: pixelated; }
+  .links { display: flex; gap: 20px; font-size: 14px; }
+  .links a { color: var(--muted); text-decoration: none; }
+  .links a:hover { color: var(--text); }
+
+  .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; padding: 72px 0 64px; }
+  .eyebrow { display: inline-block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--accent); background: var(--soft); border-radius: 999px; padding: 4px 12px; }
+  h1 { font-size: clamp(2.3rem, 5.4vw, 3.8rem); line-height: 1.06; margin: 18px 0 16px; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { color: var(--muted); font-size: 18px; max-width: 34em; margin: 0; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border-radius: 12px; font-weight: 600; text-decoration: none; color: var(--text); border: 1px solid var(--line); background: var(--card); }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--btn); color: var(--on-btn); border-color: var(--btn); }
+  .btn.primary:hover { filter: brightness(1.15); }
+  .meta { margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .art { display: grid; place-items: center; }
+  .art img { width: min(320px, 80%); height: auto; border-radius: 22%; box-shadow: 0 24px 60px rgba(15,23,42,.35); }
+
+  section { padding: 0 0 80px; }
+  h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0 0 10px; letter-spacing: -.01em; }
+  .sub { color: var(--muted); max-width: 40em; margin: 0 0 32px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  ul.check, ul.cross { list-style: none; margin: 0; padding: 0; }
+  ul.check li, ul.cross li { padding: 9px 0 9px 30px; position: relative; color: var(--muted); border-top: 1px solid var(--line); font-size: 15px; }
+  ul.check li:first-child, ul.cross li:first-child { border-top: 0; }
+  ul.check li::before, ul.cross li::before { position: absolute; left: 0; top: 9px; font-weight: 700; }
+  ul.check li::before { content: "\2713"; color: #15803D; }
+  ul.cross li::before { content: "\2715"; color: #B91C1C; }
+  @media (prefers-color-scheme: dark) { ul.check li::before { color: #4ADE80; } ul.cross li::before { color: #F87171; } }
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+  ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px 16px 64px; position: relative; color: var(--muted); }
+  ol.steps li::before { content: counter(s); position: absolute; left: 20px; top: 14px; width: 28px; height: 28px; border-radius: 8px; background: var(--btn); color: var(--on-btn); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  li b, td b, .card b { color: var(--text); }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; font-size: 15px; }
+  th, td { text-align: left; padding: 12px 16px; border-top: 1px solid var(--line); vertical-align: top; color: var(--muted); }
+  tr:first-child th, tr:first-child td { border-top: 0; }
+  th { color: var(--text); font-weight: 600; white-space: nowrap; }
+  .note { background: var(--soft); border-radius: 12px; padding: 14px 18px; color: var(--text); font-size: 15px; margin-top: 16px; }
+  .final { text-align: center; background: var(--bg2); border: 1px solid var(--line); border-radius: 24px; padding: 52px 24px; }
+  .final .ctas { justify-content: center; }
+  .final .sub { margin-inline: auto; }
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 28px 0 48px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 28px; }
+    .art { order: -1; } .art img { width: 150px; }
+    .grid, .split { grid-template-columns: 1fr; }
+    .links a.hide-sm { display: none; }
+    th { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon/logo-1024.png" alt="" width="32" height="32">Metal</a>
+    <div class="links">
+      <a class="hide-sm" href="#features">Features</a>
+      <a class="hide-sm" href="#how">How to use</a>
+      <a class="hide-sm" href="#limits">Limits</a>
+      <a href="https://github.com/its-ash/metal">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main" class="wrap">
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Free · No ads · No account</span>
+      <h1>Find the <em>metal</em> hiding in the wall.</h1>
+      <p class="lead">Metal turns your phone's magnetometer into a metal detector. Zero it, sweep slowly, and a live meter, graph, rising tone and vibration show where studs, nails, pipes, rebar and lost tools are.</p>
+      <div class="ctas">
+        <a class="btn primary" href="https://github.com/its-ash/metal/releases/latest/download/metal.apk">Download APK</a>
+        <a class="btn" href="https://store.itsash.in">Get it in Ash Store</a>
+      </div>
+      <div class="meta">Android 8.0 (API 26) or newer · needs a phone with a magnetometer</div>
+    </div>
+    <div class="art"><img src="assets/icon/logo-1024.png" alt="Metal app icon: a pixel-art horseshoe magnet" width="320" height="320"></div>
+  </header>
+
+  <section id="features">
+    <h2>Simple, honest detection</h2>
+    <p class="sub">Everything runs on the sensor already in your phone.</p>
+    <div class="grid">
+      <div class="card"><h3>Live deviation meter</h3><p>The change in the magnetic field from your zero point, as a big number in microtesla (µT), a bar and a detection threshold line.</p></div>
+      <div class="card"><h3>Zero button</h3><p>Averages the field for about 1.5 seconds with the phone held still. It retries if the phone moves, and an optional auto re-zero follows slow drift.</p></div>
+      <div class="card"><h3>Sensitivity</h3><p>Low, medium or high, with a live graph of the last 10 seconds.</p></div>
+      <div class="card"><h3>Tone and vibration</h3><p>Pitch and beep rate rise as you get closer to metal. Each can be switched off.</p></div>
+      <div class="card"><h3>Raw sensor</h3><p>Uses the uncalibrated magnetometer when your phone has one, so Android's own calibration cannot absorb the metal. It falls back to the calibrated sensor.</p></div>
+      <div class="card"><h3>Private</h3><p>No accounts, no ads, no analytics. The only network call is the update check in Settings.</p></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>How to use it</h2>
+    <p class="sub">Takes a minute to learn.</p>
+    <ol class="steps">
+      <li><b>Move away from metal.</b> Hold the phone still in an area you believe is clear, away from tables, appliances and your keys.</li>
+      <li><b>Tap Zero.</b> Metal averages the field for about 1.5 seconds. That becomes the baseline.</li>
+      <li><b>Sweep slowly</b> along the wall, floor or ground, keeping the phone at the same angle and distance from the surface.</li>
+      <li><b>Watch, listen, feel.</b> The meter climbs, the tone rises and the phone vibrates when you pass over iron or steel. The peak is where it is.</li>
+    </ol>
+  </section>
+
+  <section id="limits">
+    <h2>What it can and cannot find</h2>
+    <p class="sub">A magnetometer senses magnetic materials, not every metal.</p>
+    <div class="split">
+      <div class="card"><h3>Finds</h3>
+        <ul class="check">
+          <li><b>Iron and steel</b>: studs, nails, screws, pipes, rebar, tools</li>
+          <li><b>Nickel</b></li>
+          <li><b>Magnets</b></li>
+        </ul></div>
+      <div class="card"><h3>Does not find</h3>
+        <ul class="cross">
+          <li><b>Aluminium</b></li>
+          <li><b>Copper</b></li>
+          <li><b>Gold and silver</b></li>
+        </ul></div>
+    </div>
+    <div class="note">Metal is a handy helper, not a precision instrument. Do not rely on it alone before you drill or cut near wires or pipes.</div>
+  </section>
+
+  <section id="privacy">
+    <h2>Permissions and privacy</h2>
+    <p class="sub">Readings stay on your phone. The only network call is the update check in Settings.</p>
+    <table>
+      <tr><th scope="row">Magnetometer</th><td>The sensor that measures the magnetic field. Android needs no permission to read it.</td></tr>
+      <tr><th scope="row">Vibrate</th><td>For the vibration feedback near metal. You can switch it off.</td></tr>
+      <tr><th scope="row">Internet</th><td>Only for the update check in Settings.</td></tr>
+    </table>
+  </section>
+
+  <section id="requirements">
+    <div class="split">
+      <div class="card"><h3>Requirements</h3><p>Android 8.0 (API 26) or newer, and a phone with a magnetometer. Without one, Metal shows a "No magnetometer" message.</p></div>
+      <div class="card"><h3>Install</h3><p>Metal is not on Google Play. Tap Download APK on your phone and open the file. If Android asks, allow your browser to <b>install unknown apps</b>. Or install Ash Store once and get updates from it.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="final">
+      <h2>See what's behind the wall.</h2>
+      <p class="sub">Free, no account, no ads.</p>
+      <div class="ctas">
+        <a class="btn primary" href="https://github.com/its-ash/metal/releases/latest/download/metal.apk">Download APK</a>
+        <a class="btn" href="https://store.itsash.in">Get it in Ash Store</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><a href="https://github.com/its-ash/metal">Metal on GitHub</a> · <a href="https://store.itsash.in">Ash Store</a></span>
+    <span>Developed by <a href="https://itsash.github.io">Ashvini Jangid</a>. Android is a trademark of Google LLC.</span>
+  </div>
+</footer>
+</body>
+</html>

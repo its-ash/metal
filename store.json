@@ -1,0 +1,11 @@
+{
+  "id": "metal",
+  "name": "Metal",
+  "repo": "its-ash/metal",
+  "package": "com.itsash.metal",
+  "tagline": "Metal detector for studs, nails, pipes and rebar, using your phone's magnetometer.",
+  "description": "Metal turns your phone into a metal detector. Zero it away from metal, then sweep slowly: a live meter, graph, rising tone and vibration show where iron and steel are hiding, such as studs, nails, pipes, rebar and lost tools. It finds iron, steel, nickel and magnets, not aluminium, copper, gold or silver. Everything runs on your phone, with no ads and no tracking.",
+  "category": "Tools",
+  "icon": "assets/icon/logo-1024.png",
+  "homepage": "https://metal.itsash.in/"
+}
