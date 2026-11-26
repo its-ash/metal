@@ -63,14 +63,15 @@ class ToneGenerator {
                     .setTransferMode(AudioTrack.MODE_STREAM)
                     .build()
             } catch (e: Exception) {
+                synchronized(lock) { if (activeGen == gen) activeGen = -1 }
                 return@Thread
             }
             val buffer = ShortArray(chunk)
             var phase = 0.0
             var gain = 0.0
             var sampleClock = 0L
-            track.play()
             try {
+                track.play()
                 while (generation == gen) {
                     val f = freq
                     val period = periodMs
@@ -92,6 +93,7 @@ class ToneGenerator {
             } finally {
                 runCatching { track.stop() }
                 track.release()
+                synchronized(lock) { if (activeGen == gen) activeGen = -1 }
             }
         }.also { it.name = "metal-tone"; it.start() }
     }
